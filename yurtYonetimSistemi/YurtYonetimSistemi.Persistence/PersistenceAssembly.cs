@@ -1,5 +1,5 @@
 ﻿
 namespace YurtYonetimSistemi.Persistence;
 
-public class PersistenceAssembly;
+public struct PersistenceAssembly;
 
