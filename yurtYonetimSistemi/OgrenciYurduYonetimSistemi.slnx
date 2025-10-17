@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/core/">
+    <Project Path="YurtYonetimSistemi.Application/YurtYonetimSistemi.Application.csproj" Id="4fde04be-9887-4a0b-a5c9-07bb9f53df01" />
+    <Project Path="YurtYonetimSistemi.Domain/YurtYonetimSistemi.Domain.csproj" Id="a0c9d169-5360-4f90-8a04-cee96fbdb29b" />
+  </Folder>
+  <Folder Name="/src/core/API/">
+    <Project Path="YurtYonetimSistemi.API/YurtYonetimSistemi.API.csproj" Id="89db5b46-a1d6-4da2-810d-b544081357a3" />
+  </Folder>
+  <Folder Name="/src/infrastructure/">
+    <Project Path="YurtYonetimSistemi.Identity/YurtYonetimSistemi.Identity.csproj" Id="af746a67-b935-41b5-b67c-fcc5eeb33698" />
+    <Project Path="YurtYonetimSistemi.Persistence/YurtYonetimSistemi.Persistence.csproj" Id="d2cb2f73-38d0-4474-a9e3-ecb1f6c5cca0" />
+  </Folder>
+  <Folder Name="/test/" />
+</Solution>
