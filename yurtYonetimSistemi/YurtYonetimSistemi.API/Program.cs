@@ -1,7 +1,5 @@
-using Microsoft.EntityFrameworkCore;
-using YurtYonetimSistemi.Persistence;
-using YurtYonetimSistemi.Persistence.Context;
-using YurtYonetimSistemi.Persistence.Options;
+
+using YurtYonetimSistemi.Persistence.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,20 +9,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 // DbContext
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-
-    var connectionStrings =
-        builder.Configuration.GetSection(ConnectionStringOption.Key).Get<ConnectionStringOption>();
-
-    options.UseSqlServer(connectionStrings!.SqlServer, sqlServerOptionsAction =>
-    {
-        sqlServerOptionsAction.MigrationsAssembly(typeof(PersistenceAssembly).Assembly.FullName);
-    });
-
-});
-
-
+builder.Services.AddPersistenceExt(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
