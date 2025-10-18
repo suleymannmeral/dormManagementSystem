@@ -7,12 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\YurtYonetimSistemi.Domain\YurtYonetimSistemi.Domain.csproj" />
+    <Compile Remove="Identity\**" />
+    <Compile Remove="Persistence\**" />
+    <EmbeddedResource Remove="Identity\**" />
+    <EmbeddedResource Remove="Persistence\**" />
+    <None Remove="Identity\**" />
+    <None Remove="Persistence\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Identity\" />
-    <Folder Include="Persistence\" />
+    <ProjectReference Include="..\YurtYonetimSistemi.Domain\YurtYonetimSistemi.Domain.csproj" />
   </ItemGroup>
 
 </Project>

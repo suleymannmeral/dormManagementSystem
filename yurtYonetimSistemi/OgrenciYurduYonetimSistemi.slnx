@@ -5,7 +5,7 @@
     <Project Path="YurtYonetimSistemi.Domain/YurtYonetimSistemi.Domain.csproj" Id="a0c9d169-5360-4f90-8a04-cee96fbdb29b" />
   </Folder>
   <Folder Name="/src/core/API/">
-    <Project Path="YurtYonetimSistemi.API/YurtYonetimSistemi.API.csproj" Id="89db5b46-a1d6-4da2-810d-b544081357a3" />
+    <Project Path="YurtYonetimSistemi.API/YurtYonetimSistemi.API.csproj" Id="9aba5a00-6c0e-47c4-a648-b01cf0e21e60" />
   </Folder>
   <Folder Name="/src/infrastructure/">
     <Project Path="YurtYonetimSistemi.Identity/YurtYonetimSistemi.Identity.csproj" Id="af746a67-b935-41b5-b67c-fcc5eeb33698" />

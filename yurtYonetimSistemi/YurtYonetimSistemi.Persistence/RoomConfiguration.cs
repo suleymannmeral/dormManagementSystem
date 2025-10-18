@@ -21,16 +21,6 @@ public class RoomConfiguration : IEntityTypeConfiguration<Room>
         builder.Property(r => r.IsAvailable)
             .IsRequired();
 
-        builder.HasMany(r => r.Students) 
-            .WithOne(s => s.Room)
-            .HasForeignKey(s => s.RoomId) 
-            .IsRequired()
-            .OnDelete(DeleteBehavior.Restrict); 
 
-        builder.HasMany(r => r.Faults) 
-            .WithOne(f => f.Room) 
-            .HasForeignKey(f => f.RoomId) 
-            .IsRequired()
-            .OnDelete(DeleteBehavior.Cascade); 
     }
 }

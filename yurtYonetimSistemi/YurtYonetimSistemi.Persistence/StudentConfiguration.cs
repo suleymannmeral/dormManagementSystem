@@ -23,10 +23,5 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
             .OnDelete(DeleteBehavior.Restrict);
 
 
-        builder.HasMany(s => s.Faults)
-            .WithOne(f => f.Student)
-            .HasForeignKey(f => f.StudentId)
-            .IsRequired()
-            .OnDelete(DeleteBehavior.Cascade); 
     }
 }

@@ -16,7 +16,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Room> Rooms { get; set; }
     public DbSet<Meal> Meals { get; set; }
     public DbSet<Menu> Menus { get; set; }
-    public DbSet<FaultConfiguration> Faults { get; set; }
+    public DbSet<Fault> Faults { get; set; }
     public DbSet<Announcement> Announcements { get; set; }  
     public DbSet<Dorm> Dorms { get; set; }
 
