@@ -1,10 +1,8 @@
-﻿
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using YurtYonetimSistemi.Domain.Entities;
 
-namespace YurtYonetimSistemi.Persistence;
+namespace YurtYonetimSistemi.Persistence.Announcements;
 
 public class AnnouncementConfiguration : IEntityTypeConfiguration<Announcement>
 {
