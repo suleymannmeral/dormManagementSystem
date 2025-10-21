@@ -27,5 +27,7 @@ public class FaultConfiguration : IEntityTypeConfiguration<Fault>
             .HasForeignKey(f => f.RoomId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Restrict);
+
+       
     }
 }
