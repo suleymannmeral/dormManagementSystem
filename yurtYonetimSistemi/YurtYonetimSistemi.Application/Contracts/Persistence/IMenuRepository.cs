@@ -1,6 +1,4 @@
-﻿
-
-using YurtYonetimSistemi.Domain.Entities;
+﻿ using YurtYonetimSistemi.Domain.Entities;
 
 namespace YurtYonetimSistemi.Application.Contracts.Persistence;
 
