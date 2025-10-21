@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using YurtYonetimSistemi.Domain.Entities;
 
-namespace YurtYonetimSistemi.Persistence;
+namespace YurtYonetimSistemi.Persistence.Dorms;
 
 public class DormConfiguration : IEntityTypeConfiguration<Dorm>
 {
