@@ -2,6 +2,7 @@
 
 namespace YurtYonetimSistemi.Application.Features.Students;
 
-public class StudentService(IStudentRepository studentRepository):IStudentService
+public class StudentService(IStudentRepository studentRepository,
+    IUnitOfWork unitOfWork):IStudentService
 {
 }

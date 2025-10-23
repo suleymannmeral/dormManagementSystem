@@ -2,6 +2,7 @@
 
 namespace YurtYonetimSistemi.Application.Features.Rooms;
 
-public class RoomService(IRoomRepository roomRepository ):IRoomService
+public class RoomService(IRoomRepository roomRepository,
+    IUnitOfWork unitOfWork):IRoomService
 {
 }

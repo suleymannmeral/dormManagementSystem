@@ -2,6 +2,7 @@
 
 namespace YurtYonetimSistemi.Application.Features.Staffs;
 
-public class StaffService(IStaffRepository staffRepository):IStaffService
+public class StaffService(IStaffRepository staffRepository,
+    IUnitOfWork unitOfWork):IStaffService
 {
 }

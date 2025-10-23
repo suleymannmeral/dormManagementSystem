@@ -2,7 +2,8 @@
 
 namespace YurtYonetimSistemi.Application.Features.Dorms;
 
-public class DormService(IDormRepository dormRepository):IDormService
+public class DormService(IDormRepository dormRepository,
+    IUnitOfWork unitOfWork):IDormService
 {
 
 }
