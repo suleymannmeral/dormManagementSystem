@@ -10,4 +10,6 @@ public class Student : BaseEntity<int>
     public string University { get; set; } = null!;
     public Room Room { get; set; } = null!;
     public ICollection<Fault> Faults { get; set; } = new List<Fault>();
+    public ICollection<StudentLeave> StudentLeaves { get; set; } = new List<StudentLeave>();
+
 }

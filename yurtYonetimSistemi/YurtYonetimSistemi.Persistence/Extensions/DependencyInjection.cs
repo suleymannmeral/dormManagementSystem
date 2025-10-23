@@ -45,5 +45,6 @@ public static class DependencyInjection
         services.AddScoped<IMenuRepository, MenuRepository>();
         services.AddScoped<IStaffRepository, StaffRepository>();
         services.AddScoped<IStudentRepository, StudentRepository>();
+
     }
 }

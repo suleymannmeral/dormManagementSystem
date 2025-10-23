@@ -21,7 +21,5 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
             .HasForeignKey(s => s.RoomId) 
             .IsRequired()
             .OnDelete(DeleteBehavior.Restrict);
-
-
     }
 }
