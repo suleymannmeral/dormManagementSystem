@@ -1,4 +1,4 @@
-﻿namespace YurtYonetimSistemi.Application;
+﻿namespace YurtYonetimSistemi.Application.Features.Students;
 
 public interface IStudentService
 {
