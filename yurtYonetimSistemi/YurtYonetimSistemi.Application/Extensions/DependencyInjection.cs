@@ -9,7 +9,7 @@ using YurtYonetimSistemi.Application.Features.Rooms;
 using YurtYonetimSistemi.Application.Features.Staffs;
 using YurtYonetimSistemi.Application.Features.Students;
 
-namespace YurtYonetimSistemi.Application;
+namespace YurtYonetimSistemi.Application.Extensions;
 
 
 

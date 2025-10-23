@@ -1,4 +1,5 @@
 
+using YurtYonetimSistemi.Application.Extensions;
 using YurtYonetimSistemi.Persistence.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 // DbContext
-builder.Services.AddPersistenceExt(builder.Configuration);
+builder.Services.AddPersistenceExt(builder.Configuration).AddServicesExt(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
