@@ -18,5 +18,11 @@
   <ItemGroup>
     <ProjectReference Include="..\YurtYonetimSistemi.Domain\YurtYonetimSistemi.Domain.csproj" />
   </ItemGroup>
+	<!---->
+	<ItemGroup>
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+
+	</ItemGroup>
+
 
 </Project>

@@ -1,5 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using YurtYonetimSistemi.Application.Contracts.Persistence;
 using YurtYonetimSistemi.Domain.Entities.Common;
@@ -10,7 +9,6 @@ namespace YurtYonetimSistemi.Persistence;
 public class GenericRepository<T, TId>(AppDbContext context) : IGenericRepository<T, TId> where T : BaseEntity<TId> where TId : struct
 {
     protected AppDbContext Context = context;
-
 
     private readonly DbSet<T> _dbSet = context.Set<T>();
 
@@ -30,7 +28,6 @@ public class GenericRepository<T, TId>(AppDbContext context) : IGenericRepositor
     {
         return _dbSet.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
     }
-
     public ValueTask<T?> GetByIdAsync(int id)=>_dbSet.FindAsync(id);
 
     public void Update(T entity)=>_dbSet.Update(entity);

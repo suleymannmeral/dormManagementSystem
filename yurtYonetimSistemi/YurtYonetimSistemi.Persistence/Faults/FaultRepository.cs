@@ -4,6 +4,6 @@ using YurtYonetimSistemi.Persistence.Context;
 
 namespace YurtYonetimSistemi.Persistence.Faults;
 
-public class FaultRepositoy(AppDbContext context):GenericRepository<Fault,int>(context),IFaultRepository
+public class FaultRepository(AppDbContext context):GenericRepository<Fault,int>(context),IFaultRepository
 {
 }
