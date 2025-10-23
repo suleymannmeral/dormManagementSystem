@@ -2,6 +2,7 @@
 
 namespace YurtYonetimSistemi.Application.Features.Announcements;
 
-public class AnnouncementService(IAnnouncementRepository announcementRepository):IAnnouncementService
+public class AnnouncementService(IAnnouncementRepository announcementRepository,
+    IUnitOfWork unitOfWork):IAnnouncementService
 {
 }

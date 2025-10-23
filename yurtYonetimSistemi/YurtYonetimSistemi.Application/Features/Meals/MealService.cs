@@ -2,6 +2,7 @@
 
 namespace YurtYonetimSistemi.Application.Features.Meals;
 
-public  class MealService(IMealRepository mealRepository):IMealService
+public  class MealService(IMealRepository mealRepository,
+    IUnitOfWork unitOfWork):IMealService
 {
 }

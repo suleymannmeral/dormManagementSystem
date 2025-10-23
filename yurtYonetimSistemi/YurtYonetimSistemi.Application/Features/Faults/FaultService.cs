@@ -2,6 +2,7 @@
 
 namespace YurtYonetimSistemi.Application.Features.Faults;
 
-public class FaultService(IFaultRepository faultRepository):IFaultService
+public class FaultService(IFaultRepository faultRepository,
+    IUnitOfWork unitOfWork):IFaultService
 {
 }

@@ -1,7 +1,5 @@
 
 using YurtYonetimSistemi.Application.Extensions;
-using YurtYonetimSistemi.Persistence.Extensions;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
