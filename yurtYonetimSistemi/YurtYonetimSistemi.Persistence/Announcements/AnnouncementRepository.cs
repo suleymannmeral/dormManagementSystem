@@ -8,5 +8,4 @@ namespace YurtYonetimSistemi.Persistence;
 public class AnnouncementRepository(AppDbContext context) : GenericRepository<Announcement, int>(context), IAnnouncementRepository
 {
  
-
 }
