@@ -1,5 +1,4 @@
-﻿
-using YurtYonetimSistemi.Domain.Entities.Common;
+﻿using YurtYonetimSistemi.Domain.Entities.Common;
 using YurtYonetimSistemi.Domain.Entities.Enums;
 
 namespace YurtYonetimSistemi.Domain.Entities;

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using YurtYonetimSistemi.Domain.Entities;
 
-namespace YurtYonetimSistemi.Persistence;
+namespace YurtYonetimSistemi.Persistence.StudentLeaves;
 
 public class StudentLeaveConfiguration : IEntityTypeConfiguration<StudentLeave>
 {

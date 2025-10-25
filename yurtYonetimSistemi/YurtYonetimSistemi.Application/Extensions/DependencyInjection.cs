@@ -7,6 +7,7 @@ using YurtYonetimSistemi.Application.Features.Meals;
 using YurtYonetimSistemi.Application.Features.Menus;
 using YurtYonetimSistemi.Application.Features.Rooms;
 using YurtYonetimSistemi.Application.Features.Staffs;
+using YurtYonetimSistemi.Application.Features.StudentLeaves;
 using YurtYonetimSistemi.Application.Features.Students;
 
 namespace YurtYonetimSistemi.Application.Extensions;
@@ -26,6 +27,7 @@ public static class DependencyInjection
         services.AddScoped<IRoomService, RoomService>();
         services.AddScoped<IStaffService, StaffService>();
         services.AddScoped<IStudentService, StudentService>();
+        services.AddScoped<IStudentLeaveService, StudentLeaveService>();
 
 
         return services;

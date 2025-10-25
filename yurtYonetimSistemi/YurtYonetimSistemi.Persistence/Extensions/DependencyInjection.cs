@@ -9,6 +9,7 @@ using YurtYonetimSistemi.Persistence.Meals;
 using YurtYonetimSistemi.Persistence.Menus;
 using YurtYonetimSistemi.Persistence.Options;
 using YurtYonetimSistemi.Persistence.Rooms;
+using YurtYonetimSistemi.Persistence.StudentLeaves;
 using YurtYonetimSistemi.Persistence.Students;
 
 public static class DependencyInjection
@@ -45,6 +46,7 @@ public static class DependencyInjection
         services.AddScoped<IMenuRepository, MenuRepository>();
         services.AddScoped<IStaffRepository, StaffRepository>();
         services.AddScoped<IStudentRepository, StudentRepository>();
+        services.AddScoped<IStudentLeaveRepository, StudentLeaveRepository>();
 
     }
 }
