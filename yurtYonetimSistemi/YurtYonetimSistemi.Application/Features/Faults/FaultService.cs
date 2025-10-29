@@ -1,30 +1,32 @@
 ﻿using System.Net;
+using YurtYonetimSistemi.Application.Contracts.Identity;
 using YurtYonetimSistemi.Application.Contracts.Persistence;
 
 namespace YurtYonetimSistemi.Application.Features.Faults;
 
-public class FaultService(IFaultRepository faultRepository,
-    IUnitOfWork unitOfWork):IFaultService
+public class FaultService(IFaultRepository _faultRepository,
+    IUnitOfWork _unitOfWork,
+    IUserService _userService
+    ):IFaultService
 {
-    //public async Task<ServiceResult<FaultDto>> GetFaultByIdAsync(int id)
-    //{
-    //    var fault = await faultRepository.GetByIdAsync(id);
+    public async Task<ServiceResult<FaultDto>> GetFaultByIdAsync(int id)
+    {
+        var fault = await _faultRepository.GetByIdAsync(id);
+        if (fault == null)
+            return ServiceResult<FaultDto>.Fail("Not found");
 
-    //    // Check if fault exists
+        var fullName = await _userService.GetFullNameByUserIdAsync(fault.Student.UserId);
 
-    //    if (fault is null)
-    //    {
-    //        return ServiceResult<FaultDto>.Fail("Fault not found",HttpStatusCode.NotFound);
-    //    }
-    //    // Map Fault to FaultDto (Manual mapping)
-    //    //var faultDto = new FaultDto(
-    //    //    fault.Id,
-    //    //    fault.Title,
-    //    //    fault.Description,
-    //    //    fault.StudentId,
-    //    //    fault.RoomId,
-    //    //    fault.
-    //    //);
-    //    return ServiceResult<FaultDto>.Success(faultDto);
-    //}
+        //manually mapping
+        var dto = new FaultDto(
+            fault.Id,
+            fault.Title,
+            fault.Description,
+            fault.StudentId,
+            fault.RoomId,
+            fullName ?? "Bilinmiyor"
+        );
+
+        return ServiceResult<FaultDto>.Success(dto);
+    }
 }

@@ -5,7 +5,6 @@ namespace YurtYonetimSistemi.API.Extensions;
 
 public static class IdentityExtensions
 {
-    
     public static IServiceCollection AddIdentityExt(this IServiceCollection services)
     {
         services.AddIdentity<ApplicationUser, Role>(options =>
