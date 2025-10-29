@@ -1,8 +1,28 @@
-﻿using YurtYonetimSistemi.Application.Contracts.Persistence;
+﻿using System.Net;
+using YurtYonetimSistemi.Application.Contracts.Identity;
+using YurtYonetimSistemi.Application.Contracts.Persistence;
 
 namespace YurtYonetimSistemi.Application.Features.Staffs;
 
 public class StaffService(IStaffRepository staffRepository,
-    IUnitOfWork unitOfWork):IStaffService
+    IUnitOfWork unitOfWork,
+    IUserService userService):IStaffService
 {
+    public async Task<ServiceResult<StaffDto>> GetStaffByIdAsync(int id)
+    {
+        var staff = await staffRepository.GetByIdAsync(id);
+        // Check if staff exists
+        if (staff is null)
+        {
+            return ServiceResult<StaffDto>.Fail("Staff not found",HttpStatusCode.NotFound);
+        }
+        var fullName = await userService.GetFullNameByUserIdAsync(staff.UserId);
+        var staffDto = new StaffDto(
+            staff.Id,
+            fullName!,
+            staff.Position,
+            staff.UserId
+        );
+        return ServiceResult<StaffDto>.Success(staffDto);
+    }
 }

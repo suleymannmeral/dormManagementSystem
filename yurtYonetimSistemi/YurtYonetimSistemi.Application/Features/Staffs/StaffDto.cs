@@ -3,6 +3,7 @@
 public record StaffDto(
     int Id,
     string FullName,
+    string Position,
     int UserId
     );
 

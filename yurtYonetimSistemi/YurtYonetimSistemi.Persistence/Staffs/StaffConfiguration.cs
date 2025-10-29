@@ -10,5 +10,6 @@ public class StaffConfiguration : IEntityTypeConfiguration<Staff>
     {
         builder.HasKey(s => s.Id);
         builder.Property(s => s.UserId).IsRequired();
+        builder.Property(s => s.Position).IsRequired().HasMaxLength(100);
     }
 }

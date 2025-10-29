@@ -2,4 +2,5 @@
 
 public interface IStaffService
 {
+    Task<ServiceResult<StaffDto>> GetStaffByIdAsync(int id);
 }
