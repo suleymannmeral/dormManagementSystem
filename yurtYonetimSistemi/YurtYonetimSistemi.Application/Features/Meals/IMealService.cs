@@ -2,5 +2,5 @@
 
 public  interface IMealService
 {
-
+    Task<ServiceResult<MealDto>> GetMealByIdAsync(int id);
 }

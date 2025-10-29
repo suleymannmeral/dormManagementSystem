@@ -2,4 +2,5 @@
 
 public interface IMenuService
 {
+    Task<ServiceResult<MenuDto>> GetMenuByIdAsync(int id);
 }
