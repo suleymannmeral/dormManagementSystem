@@ -1,15 +1,32 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Reflection;
 using YurtYonetimSistemi.Domain.Entities;
+using YurtYonetimSistemi.Identity.Models;
 
 namespace YurtYonetimSistemi.Persistence.Context;
-public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+public class AppDbContext: IdentityDbContext<ApplicationUser, Role, int>
 {
+    public AppDbContext(DbContextOptions options) : base(options)
+    {
+
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+    
+
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Ignore<IdentityUserLogin<int>>();
+        modelBuilder.Ignore<IdentityUserRole<int>>();
+        modelBuilder.Ignore<IdentityUserClaim<int>>();
+        modelBuilder.Ignore<IdentityUserToken<int>>();
+        modelBuilder.Ignore<IdentityRoleClaim<int>>();
+        modelBuilder.Ignore<IdentityRole<int>>();
+
     }
     public DbSet<Student> Students { get; set; }
     public DbSet<Staff> Staffs { get; set; }

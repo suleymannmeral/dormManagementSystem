@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\YurtYonetimSistemi.Application\YurtYonetimSistemi.Application.csproj" />
+    <ProjectReference Include="..\YurtYonetimSistemi.Identity\YurtYonetimSistemi.Identity.csproj" />
   </ItemGroup>
 
 </Project>
