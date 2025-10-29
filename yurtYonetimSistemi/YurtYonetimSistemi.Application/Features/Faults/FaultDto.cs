@@ -5,6 +5,5 @@ public record FaultDto(
     string Title,
     string Description,
     int StudentId,
-    int RoomId,
-    string StudentName
+    int RoomId
 );

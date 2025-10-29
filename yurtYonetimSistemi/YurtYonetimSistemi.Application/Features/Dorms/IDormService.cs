@@ -2,5 +2,6 @@
 
 public interface IDormService
 {
+    Task<ServiceResult<DormDto>> GetDormByIdAsync(int id);
 
 }
