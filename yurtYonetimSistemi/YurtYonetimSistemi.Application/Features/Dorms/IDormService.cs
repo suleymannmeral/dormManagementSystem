@@ -1,4 +1,6 @@
-﻿namespace YurtYonetimSistemi.Application.Features.Dorms;
+﻿using YurtYonetimSistemi.Application.DTOs.Dorms;
+
+namespace YurtYonetimSistemi.Application.Features.Dorms;
 
 public interface IDormService
 {

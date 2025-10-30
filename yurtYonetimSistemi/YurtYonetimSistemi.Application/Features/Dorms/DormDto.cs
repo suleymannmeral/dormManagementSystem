@@ -1,4 +1,4 @@
-﻿namespace YurtYonetimSistemi.Application.Features;
+﻿namespace YurtYonetimSistemi.Application.Features.Dorms;
 
 public record DormDto(
     int Id,

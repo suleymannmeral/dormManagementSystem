@@ -1,6 +1,4 @@
-﻿
-
-namespace YurtYonetimSistemi.Application.Features.Faults.Create;
+﻿namespace YurtYonetimSistemi.Application.DTOs.Faults.Create;
 
 public record  CreateFaultResponse(int Id);
 

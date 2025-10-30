@@ -1,3 +1,3 @@
-﻿namespace YurtYonetimSistemi.Application.Features.Announcements.Create;
+﻿namespace YurtYonetimSistemi.Application.DTOs.Announcements.Create;
 public record  CreateAnnouncementRequest(string Title, string Description);
 

@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using YurtYonetimSistemi.Application.Contracts.Persistence;
+using YurtYonetimSistemi.Application.DTOs.Dorms;
 
 namespace YurtYonetimSistemi.Application.Features.Dorms;
 
