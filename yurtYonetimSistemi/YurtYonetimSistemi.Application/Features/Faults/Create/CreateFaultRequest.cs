@@ -1,4 +1,6 @@
-﻿namespace YurtYonetimSistemi.Application.Features.Faults.Create;
+﻿using YurtYonetimSistemi.Domain.Entities.Enums;
 
-public record CreateFaultRequest(string Title,string Description,int studentUserId,int RoomId);
+namespace YurtYonetimSistemi.Application.Features.Faults.Create;
+
+public record CreateFaultRequest(string Title,string Description,int studentId,int RoomId);
 

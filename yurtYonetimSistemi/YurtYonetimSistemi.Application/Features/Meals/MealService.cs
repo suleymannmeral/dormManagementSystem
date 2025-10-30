@@ -1,5 +1,9 @@
 ﻿using System.Net;
 using YurtYonetimSistemi.Application.Contracts.Persistence;
+using YurtYonetimSistemi.Application.Features.Faults.Create;
+using YurtYonetimSistemi.Application.Features.Meals.Create;
+using YurtYonetimSistemi.Domain.Entities;
+using YurtYonetimSistemi.Domain.Entities.Enums;
 
 namespace YurtYonetimSistemi.Application.Features.Meals;
 
@@ -28,4 +32,22 @@ public  class MealService(IMealRepository mealRepository,
         );
         return ServiceResult<MealDto>.Success(mealDto);
     }
+    public async Task<ServiceResult<CreateMealResponse>> CreateAsync(CreateMealRequest request)
+    {
+        // Create new Meal entity manually
+        var meal = new Meal()
+        {
+           Name = request.Name,
+           Type = request.Type,
+           MenuId = request.MenuId
+        };
+
+        await mealRepository.AddAsync(meal);
+        await unitOfWork.SaveChangesAsync();
+
+        return ServiceResult<CreateMealResponse>.Success(new CreateMealResponse(meal.Id));
+    }
+
+
+
 }
