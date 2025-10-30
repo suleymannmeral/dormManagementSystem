@@ -2,6 +2,7 @@
 using YurtYonetimSistemi.Application.Contracts.Identity;
 using YurtYonetimSistemi.Application.Contracts.Persistence;
 
+
 namespace YurtYonetimSistemi.Application.Features.Staffs;
 
 public class StaffService(IStaffRepository staffRepository,
@@ -25,4 +26,23 @@ public class StaffService(IStaffRepository staffRepository,
         );
         return ServiceResult<StaffDto>.Success(staffDto);
     }
+
+    //public async Task<ServiceResult<CreateStaffResponse>> CreateAsync(CreateStaffRequest request)
+    //{
+        
+
+
+    //    //var staff = new Staff()
+    //    //{
+            
+
+    //    //};
+
+    //    //await roomRepository.AddAsync(room);
+    //    //await unitOfWork.SaveChangesAsync();
+
+    //    //return ServiceResult<CreateRoomResponse>.Success(new CreateRoomResponse(room.Id));
+    //}
+
+
 }

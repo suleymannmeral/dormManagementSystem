@@ -1,7 +1,9 @@
 ﻿using System.Net;
 using YurtYonetimSistemi.Application.Contracts.Identity;
 using YurtYonetimSistemi.Application.Contracts.Persistence;
+using YurtYonetimSistemi.Application.Features.Rooms.Create;
 using YurtYonetimSistemi.Application.Features.Students;
+using YurtYonetimSistemi.Domain.Entities;
 
 namespace YurtYonetimSistemi.Application.Features.Rooms;
 
@@ -44,4 +46,30 @@ public class RoomService(IRoomRepository roomRepository,
         );
         return ServiceResult<RoomDto>.Success(roomDto);
     }
+    public async Task<ServiceResult<CreateRoomResponse>> CreateAsync(CreateRoomRequest request)
+    {
+        var anyRoom = await roomRepository.AnyAsync(r=>r.RoomNumber == request.RoomNumber);
+
+        if(anyRoom)
+        {
+            return ServiceResult<CreateRoomResponse>.Fail("Room number already exist", HttpStatusCode.BadRequest);
+
+        }
+
+        var room = new Room()
+        {
+            RoomNumber = request.RoomNumber,
+            Capacity = request.Capacity,
+            IsAvailable = true
+
+        };
+
+        await roomRepository.AddAsync(room);
+        await unitOfWork.SaveChangesAsync();
+
+        return ServiceResult<CreateRoomResponse>.Success(new CreateRoomResponse(room.Id));
+    }
+
+
+
 }
