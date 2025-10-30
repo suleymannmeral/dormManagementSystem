@@ -7,7 +7,7 @@ public  class MealService(IMealRepository mealRepository,
     IUnitOfWork unitOfWork):IMealService
 {
 
-    public async Task<ServiceResult<MealDto>> GetMealByIdAsync(int id)
+    public async Task<ServiceResult<MealDto>> GetByIdAsync(int id)
     {
         var meal = await mealRepository.GetByIdAsync(id);
 

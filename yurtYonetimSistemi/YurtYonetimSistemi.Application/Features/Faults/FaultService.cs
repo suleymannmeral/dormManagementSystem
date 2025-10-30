@@ -9,7 +9,7 @@ public class FaultService(IFaultRepository _faultRepository,
     IUserService _userService
     ):IFaultService
 {
-    public async Task<ServiceResult<FaultDto>> GetFaultByIdAsync(int id)
+    public async Task<ServiceResult<FaultDto>> GetByIdAsync(int id)
     {
         var fault = await _faultRepository.GetByIdAsync(id);
         if (fault == null)
