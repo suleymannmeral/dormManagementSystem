@@ -1,4 +1,5 @@
-﻿using YurtYonetimSistemi.Application.Features.Announcements.Create;
+﻿using YurtYonetimSistemi.Application.DTOs.Announcements;
+using YurtYonetimSistemi.Application.Features.Announcements.Create;
 
 namespace YurtYonetimSistemi.Application.Features.Announcements;
 

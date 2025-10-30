@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Reflection;
 using YurtYonetimSistemi.Application.Contracts.Persistence;
+using YurtYonetimSistemi.Application.DTOs.Announcements;
 using YurtYonetimSistemi.Application.Features.Announcements.Create;
 using YurtYonetimSistemi.Domain.Entities;
 

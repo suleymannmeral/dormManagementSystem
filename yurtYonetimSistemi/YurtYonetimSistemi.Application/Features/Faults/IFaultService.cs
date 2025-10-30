@@ -1,4 +1,4 @@
-﻿using YurtYonetimSistemi.Application.Features.Faults.Create;
+﻿using YurtYonetimSistemi.Application.DTOs.Faults.Create;
 
 namespace YurtYonetimSistemi.Application.Features.Faults;
 public interface IFaultService

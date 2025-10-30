@@ -5,7 +5,6 @@ using YurtYonetimSistemi.Application.Features.Users;
 using YurtYonetimSistemi.Application.Features.Users.Create;
 using YurtYonetimSistemi.Domain.Entities;
 
-
 namespace YurtYonetimSistemi.Application.Features.Staffs;
 
 public class StaffService(IStaffRepository staffRepository,
@@ -32,10 +31,11 @@ public class StaffService(IStaffRepository staffRepository,
 
     public async Task<ServiceResult<CreateStaffResponse>> CreateAsync(CreateStaffRequest request,CreateUserRequest requestUser)
     {
-        
+
         var userResult = await userService.CreateUserAsync(requestUser);
-        //if (!userResult.Success)
-        //    return ServiceResult<CreateUserResponse>.Fail(userResult.ErrorMessage);
+
+        if (!userResult.IsSuccess)
+            return ServiceResult<CreateStaffResponse>.Fail(userResult.ErrorMessage!);
 
         var staff = new Staff()
         {
