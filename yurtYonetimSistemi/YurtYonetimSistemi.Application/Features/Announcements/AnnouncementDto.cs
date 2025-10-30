@@ -1,4 +1,4 @@
-﻿namespace YurtYonetimSistemi.Application.Features.Announcements;
+﻿namespace YurtYonetimSistemi.Application.DTOs.Announcements;
 
 public record AnnouncementDto(
     int Id,

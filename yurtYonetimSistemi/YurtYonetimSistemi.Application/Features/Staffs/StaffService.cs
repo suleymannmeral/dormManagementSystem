@@ -1,7 +1,9 @@
 ﻿using System.Net;
-using YurtYonetimSistemi.Application.Contracts.Identity;
 using YurtYonetimSistemi.Application.Contracts.Persistence;
-
+using YurtYonetimSistemi.Application.Features.Staffs.Create;
+using YurtYonetimSistemi.Application.Features.Users;
+using YurtYonetimSistemi.Application.Features.Users.Create;
+using YurtYonetimSistemi.Domain.Entities;
 
 namespace YurtYonetimSistemi.Application.Features.Staffs;
 
@@ -27,22 +29,25 @@ public class StaffService(IStaffRepository staffRepository,
         return ServiceResult<StaffDto>.Success(staffDto);
     }
 
-    //public async Task<ServiceResult<CreateStaffResponse>> CreateAsync(CreateStaffRequest request)
-    //{
-        
+    public async Task<ServiceResult<CreateStaffResponse>> CreateAsync(CreateStaffRequest request,CreateUserRequest requestUser)
+    {
 
+        var userResult = await userService.CreateUserAsync(requestUser);
 
-    //    //var staff = new Staff()
-    //    //{
-            
+        if (!userResult.IsSuccess)
+            return ServiceResult<CreateStaffResponse>.Fail(userResult.ErrorMessage!);
 
-    //    //};
+        var staff = new Staff()
+        {
+            Position=request.Position,
+            UserId=userResult.Data!.UserId
+        };
 
-    //    //await roomRepository.AddAsync(room);
-    //    //await unitOfWork.SaveChangesAsync();
+        await staffRepository.AddAsync(staff);
+        await unitOfWork.SaveChangesAsync();
 
-    //    //return ServiceResult<CreateRoomResponse>.Success(new CreateRoomResponse(room.Id));
-    //}
+        return ServiceResult<CreateStaffResponse>.Success(new CreateStaffResponse(staff.Id));
+    }
 
 
 }

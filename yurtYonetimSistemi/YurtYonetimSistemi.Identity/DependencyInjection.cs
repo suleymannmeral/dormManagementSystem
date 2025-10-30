@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using YurtYonetimSistemi.Application.Contracts.Identity;
+using YurtYonetimSistemi.Application.Features.Users;
 
 namespace YurtYonetimSistemi.Identity
 {
