@@ -1,48 +1,72 @@
 ﻿using System.Net;
+using System.Text.Json.Serialization;
 
 namespace YurtYonetimSistemi.Application;
 
+
+
+
 public class ServiceResult<T>
 {
-    public T? Data { get; set; } // başarılı ise data döner
+    public T? Data { get; set; }
+    public List<string>? ErrorMessage { get; set; }
+    [JsonIgnore] public bool IsSuccess => ErrorMessage == null || ErrorMessage.Count == 0;
+    [JsonIgnore] public bool IsFail => !IsSuccess;
+    [JsonIgnore] public HttpStatusCode StatusCode { get; set; }
 
-    public List<string>? ErrorMessage { get; set; } // başarısız ise hata mesajları döner
+    [JsonIgnore] public string? UrlAsCreated { get; set; }
 
-    public bool IsSuccess=> ErrorMessage == null || ErrorMessage.Count == 0;
-
-    public bool IsFail=> !IsSuccess;
-
-    public HttpStatusCode StatusCode { get; set; }
-
-    // static factory methodlar
-    public static ServiceResult<T> Success(T data,HttpStatusCode statusCode=HttpStatusCode.OK) // başarılı sonuç
+    // static factory method
+    public static ServiceResult<T> Success(T data, HttpStatusCode statusCode = HttpStatusCode.OK) => new()
+    {
+        Data = data,
+        StatusCode = statusCode
+    };
+    public static ServiceResult<T> SuccessAsCreated(T data, string urlAsCreated)
     {
         return new ServiceResult<T>()
         {
             Data = data,
-            StatusCode = statusCode
+            StatusCode = HttpStatusCode.Created,
+            UrlAsCreated = urlAsCreated
         };
     }
-
-    public static ServiceResult<T> Fail(List<string> errorMessages, HttpStatusCode statusCode=HttpStatusCode.BadRequest)  // çoklu hata mesajı
+    public static ServiceResult<T> Fail(List<string> errors, HttpStatusCode statusCode = HttpStatusCode.BadRequest) => new()
     {
-        return new ServiceResult<T>()
-        {
-            ErrorMessage = errorMessages,
-            StatusCode = statusCode
-        };
-    }
-
-    public static ServiceResult<T> Fail(string errorMessage, HttpStatusCode statusCode = HttpStatusCode.BadRequest)  // tek hata mesajı
+        ErrorMessage = errors,
+        StatusCode = statusCode
+    };
+    public static ServiceResult<T> Fail(string error, HttpStatusCode statusCode = HttpStatusCode.BadRequest) => new()
     {
-        return new ServiceResult<T>()
-        {
-            ErrorMessage = new List<string>() { errorMessage },
-            StatusCode = statusCode
-        };
-    }
+        ErrorMessage = [error],
+        StatusCode = statusCode
+    };
+
+}
 
 
+public class ServiceResult
+{
+    public List<string>? ErrorMessage { get; set; }
+    [JsonIgnore] public bool IsSuccess => ErrorMessage == null || ErrorMessage.Count == 0;
+    [JsonIgnore] public bool IsFail => !IsSuccess;
+    [JsonIgnore] public HttpStatusCode StatusCode { get; set; }
 
+    // static factory method
+    public static ServiceResult Success(HttpStatusCode statusCode = HttpStatusCode.OK) => new()
+    {
+
+        StatusCode = statusCode
+    };
+    public static ServiceResult Fail(List<string> errors, HttpStatusCode statusCode = HttpStatusCode.BadRequest) => new()
+    {
+        ErrorMessage = errors,
+        StatusCode = statusCode
+    };
+    public static ServiceResult Fail(string error, HttpStatusCode statusCode = HttpStatusCode.BadRequest) => new()
+    {
+        ErrorMessage = [error],
+        StatusCode = statusCode
+    };
 
 }

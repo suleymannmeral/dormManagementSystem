@@ -11,7 +11,7 @@ public class StaffService(IStaffRepository staffRepository,
     IUnitOfWork unitOfWork,
     IUserService userService):IStaffService
 {
-    public async Task<ServiceResult<StaffDto>> GetStaffByIdAsync(int id)
+    public async Task<ServiceResult<StaffDto>> GetByIdAsync(int id)
     {
         var staff = await staffRepository.GetByIdAsync(id);
         // Check if staff exists
@@ -31,6 +31,14 @@ public class StaffService(IStaffRepository staffRepository,
 
     public async Task<ServiceResult<CreateStaffResponse>> CreateAsync(CreateStaffRequest request,CreateUserRequest requestUser)
     {
+
+        var anyUser = await userService.GetUserByUsername(requestUser.UserName);
+
+        if (anyUser is not null)
+        {
+            return ServiceResult<CreateStaffResponse>.Fail("Username already exist", HttpStatusCode.BadRequest);
+
+        }
 
         var userResult = await userService.CreateUserAsync(requestUser);
 

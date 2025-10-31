@@ -6,6 +6,7 @@ public interface IUserService
 {
     Task<string?> GetFullNameByUserIdAsync(int userId);
     Task<ServiceResult<CreateUserResponse>> CreateUserAsync(CreateUserRequest request);
+    Task<ServiceResult<UserDto>> GetUserByUsername(string userName);
 
 
 }
