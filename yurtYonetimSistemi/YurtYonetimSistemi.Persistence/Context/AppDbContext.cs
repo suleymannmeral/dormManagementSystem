@@ -36,5 +36,7 @@ public class AppDbContext: IdentityDbContext<ApplicationUser, Role, int>
     public DbSet<Fault> Faults { get; set; }
     public DbSet<Announcement> Announcements { get; set; }  
     public DbSet<Dorm> Dorms { get; set; }
+    public DbSet<StudentLeave> StudentLeaves { get; set; }
 
-    }
+
+}
