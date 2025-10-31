@@ -1,6 +1,9 @@
 ﻿using System.Net;
 using YurtYonetimSistemi.Application.Contracts.Persistence;
+using YurtYonetimSistemi.Application.Features.Students.Create;
 using YurtYonetimSistemi.Application.Features.Users;
+using YurtYonetimSistemi.Application.Features.Users.Create;
+using YurtYonetimSistemi.Domain.Entities;
 
 namespace YurtYonetimSistemi.Application.Features.Students;
 
@@ -27,4 +30,34 @@ public class StudentService(IStudentRepository studentRepository,
         );
         return ServiceResult<StudentDto>.Success(studentDto);
     }
+
+    public async Task<ServiceResult<CreateStudentResponse>> CreateAsync(CreateStudentRequest request, CreateUserRequest requestUser)
+    {
+
+        var anyUser = await userService.GetUserByUsername(requestUser.UserName);
+
+        if (anyUser is not null)
+        {
+            return ServiceResult<CreateStudentResponse>.Fail("Username already exist", HttpStatusCode.BadRequest);
+
+        }
+
+        var userResult = await userService.CreateUserAsync(requestUser);
+
+        if (!userResult.IsSuccess)
+            return ServiceResult<CreateStudentResponse>.Fail(userResult.ErrorMessage!);
+
+        var student = new Student()
+        {
+            UserId = userResult.Data!.UserId,
+            Department=request.Department,
+            RoomId=request.RoomNumber
+        };
+
+        await studentRepository.AddAsync(student);
+        await unitOfWork.SaveChangesAsync();
+
+        return ServiceResult<CreateStudentResponse>.Success(new CreateStudentResponse(student.Id));
+    }
+
 }
