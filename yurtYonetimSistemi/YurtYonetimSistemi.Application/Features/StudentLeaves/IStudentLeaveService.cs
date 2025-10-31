@@ -2,4 +2,5 @@
 
 public interface IStudentLeaveService
 {
+    Task<ServiceResult<StudentLeaveDto>> GetByIdAsync(int id);
 }
