@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using YurtYonetimSistemi.Application.Contracts.Persistence;
+using YurtYonetimSistemi.Application.Features.Dorms.Update;
 
 namespace YurtYonetimSistemi.Application.Features.Dorms;
 
@@ -30,5 +31,29 @@ public class DormService(IDormRepository dormRepository,
 
         return ServiceResult<DormDto>.Success(dormDto);
     }
+
+    public async Task<ServiceResult> UpdateAsync(int id, UpdateDormRequest request)
+    {
+        var dorm= await dormRepository.GetByIdAsync(id);
+
+        if(dorm is null)
+        {
+            return ServiceResult.Fail("Dorm not found", HttpStatusCode.NotFound);
+        }
+
+        dorm.Name = request.Name;
+        dorm.Address = request.Adress;
+        dorm.PhoneNumber=request.PhoneNumber;
+        dorm.Email = request.Email;
+
+        dormRepository.Update(dorm);
+        await unitOfWork.SaveChangesAsync();
+
+        return ServiceResult.Success();
+
+
+    }
+
+
 
 }

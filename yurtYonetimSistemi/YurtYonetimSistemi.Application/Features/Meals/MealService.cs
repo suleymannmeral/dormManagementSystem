@@ -1,9 +1,8 @@
 ﻿using System.Net;
 using YurtYonetimSistemi.Application.Contracts.Persistence;
-using YurtYonetimSistemi.Application.Features.Faults.Create;
 using YurtYonetimSistemi.Application.Features.Meals.Create;
+using YurtYonetimSistemi.Application.Features.Meals.Update;
 using YurtYonetimSistemi.Domain.Entities;
-using YurtYonetimSistemi.Domain.Entities.Enums;
 
 namespace YurtYonetimSistemi.Application.Features.Meals;
 
@@ -48,6 +47,23 @@ public  class MealService(IMealRepository mealRepository,
         return ServiceResult<CreateMealResponse>.Success(new CreateMealResponse(meal.Id));
     }
 
+    public async Task<ServiceResult> UpdateAsync(int id, UpdateMealRequest request)
+    {
+        var meal = await mealRepository.GetByIdAsync(id);
 
+        if (meal is null)
+        {
+            return ServiceResult.Fail("Meal not found", HttpStatusCode.NotFound);
+        }
+        meal.Name = request.Name;
+        meal.Type = request.Type;
+        meal.MenuId = request.MenuId;
 
-}
+        mealRepository.Update(meal);
+        await unitOfWork.SaveChangesAsync();
+
+        return ServiceResult.Success();
+
+    }
+
+    }

@@ -1,6 +1,8 @@
 ﻿using System.Net;
 using YurtYonetimSistemi.Application.Contracts.Persistence;
+using YurtYonetimSistemi.Application.Features.Faults.UpdateFault;
 using YurtYonetimSistemi.Application.Features.Menus.Create;
+using YurtYonetimSistemi.Application.Features.Menus.Update;
 using YurtYonetimSistemi.Domain.Entities;
 
 namespace YurtYonetimSistemi.Application.Features.Menus;
@@ -47,6 +49,24 @@ public class MenuService(IMenuRepository menuRepository,
         return ServiceResult<CreateMenuResponse>.Success(new CreateMenuResponse(menu.Id));
     }
 
+    public async Task<ServiceResult> UpdateAsync(int id, UpdateMenuRequest request)
+    {
+        var menu = await menuRepository.GetByIdAsync(id);
+
+        if (menu is null)
+        {
+            return ServiceResult.Fail("Menu not found", HttpStatusCode.NotFound);
+        }
+
+        menu.MealTime = request.MealTime;
+        menu.Date = request.Date;
+    
+        menuRepository.Update(menu);
+        await unitOfWork.SaveChangesAsync();
+
+        return ServiceResult.Success();
+
+    }
 
 
 
