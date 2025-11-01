@@ -1,5 +1,9 @@
-﻿using YurtYonetimSistemi.Application.Contracts.Persistence;
+﻿using System.Net;
+using YurtYonetimSistemi.Application.Contracts.Persistence;
 using YurtYonetimSistemi.Application.DTOs.Faults.Create;
+using YurtYonetimSistemi.Application.Features.Dorms.Update;
+using YurtYonetimSistemi.Application.Features.Faults.Update;
+using YurtYonetimSistemi.Application.Features.Faults.UpdateFault;
 using YurtYonetimSistemi.Application.Features.Users;
 using YurtYonetimSistemi.Domain.Entities;
 using YurtYonetimSistemi.Domain.Entities.Enums;
@@ -49,5 +53,46 @@ public class FaultService(IFaultRepository faultRepository,
 
         return ServiceResult<CreateFaultResponse>.Success(new CreateFaultResponse(fault.Id));
     }
+
+    // for student Update Fault
+    public async Task<ServiceResult> UpdateAsync(int id, UpdateFaultRequest request)
+    {
+        var fault = await faultRepository.GetByIdAsync(id);
+
+        if (fault is null)
+        {
+            return ServiceResult.Fail("Fault not found", HttpStatusCode.NotFound);
+        }
+
+        fault.Title = request.Title;
+        fault.Description = request.Description;
+      
+        faultRepository.Update(fault);
+        await unitOfWork.SaveChangesAsync();
+
+        return ServiceResult.Success();
+
+    }
+
+    public async Task<ServiceResult> UpdateStatusAsync(int id, UpdateFaultStatusRequest request)
+    {
+        var fault = await faultRepository.GetByIdAsync(id);
+
+        if (fault is null)
+        {
+            return ServiceResult.Fail("Fault not found", HttpStatusCode.NotFound);
+        }
+
+        fault.Status = request.Status;
+        
+
+        faultRepository.Update(fault);
+        await unitOfWork.SaveChangesAsync();
+
+        return ServiceResult.Success();
+
+    }
+
+
 
 }
